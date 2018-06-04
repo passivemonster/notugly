@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Three particles TWEEN animation</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/91/three.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+    <script type="text/javascript" src="js/CanvasRenderer.js"></script>
+    <script type="text/javascript" src="js/Projector.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/OrbitControls.js"></script>
+  	<script src="js/dat.gui.min.js"></script>
+  	<script src="js/threex.windowresize.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> -->
+
+
+</head>
+<body>
+
+
+<div class="container-fluid" style="height:100%;">
+<section id="section1" class="container-fluid au" style="height:100%;">
+   <script id="fs_wire" type="x-shader/x-fragment">
+      uniform float time;
+      uniform float opacity;
+      uniform float width;
+      void main(){
+        vec2 p = gl_FragCoord.xy;
+        float m = (width/8.0);
+        float n = 2.0;
+        float o = opacity ;
+
+        float r = 0.1 + p.x/m*0.1 + (sin(radians(time+0.2))/n);
+        float g = 0.5 + p.y/m*0.15 + (sin(radians(time+0.1))/n);
+      // float b = 0.8 + p.x/m*0.1 + (sin(radians(time))/n);
+
+      gl_FragColor = vec4(r,g,0.93,o); }
+    </script>
+
+    <script id="vs_brain" type="x-shader/x-vertex">
+      attribute vec3 translation;
+      void main(){
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position * 10, 1.0);
+      }
+    </script>
+    <script id="fs_brain" type="x-shader/x-fragment">
+      void main(){
+        vec2 p = gl_FragCoord.xy;
+         float m = 200.0; float l = p.x/m*3.0;
+         float d = p.y/m/1.0;
+         // gl_FragColor = vec4(l,d,l,0.65);
+       }
+    </script>
+
+    <div class="story" id="story1" style="height:50%">
+      <canvas id="brain-canvas1" __spector_context_type="webgl"></canvas>
+    </div>
+  </section>
+  <table class="table table-borderless">
+    <tbody>
+      <tr>
+      <canvas id="john"></canvas>
+      </tr>
+      <tr>
+        <td>
+          <div class="navbar navbar-dark bg-dark shadow" id="navbar">
+            <div class="container d-flex">
+              <button  class="navbar-brand d-flex align-items-center" id="landing_page" style="border-radius:10%;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                <strong>HOME</strong>
+              </button>
+              <button class="navbar-brand d-flex align-items-center" id="what_we_do" style="border-radius:10%;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                <strong>WHAT WE DO</strong>
+              </button>
+              <button class="navbar-brand d-flex align-items-center" id="About_us" style="border-radius:10%;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                <strong>ABOUT US</strong>
+              </button>
+              <button class="navbar-brand d-flex align-items-center" id="contact_us" style="border-radius:10%;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                <strong>CONTACT US</strong>
+              </button>
+              <button class="navbar-brand d-flex align-items-center" id="join_us" style="border-radius:10%;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                <strong>JOIN US</strong>
+              </button>
+              <!-- <div class="icon-bar">
+                <a class="active" href="#landing_page" ><i class="material-icons">group</i>ABOUT </a>
+                <a href="#portfolio"><i class="material-icons">accessibility_new</i>WHAT WE DO</a>
+                <a href="#"><i class="material-icons">group</i>ABOUT US</a>
+                <a href="#"><i class="material-icons">email</i>CONTACT US</a>
+                <a href="#"><i class="material-icons">group_add</i>JOIN US</a>
+
+              </div> -->
+
+
+            </div>
+          </div>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+  <section id="landing_content">
+
+
+  <section>
+
+    <div class="row">
+        <div class="container">
+        <img src="pic.jpg" alt="logo" class="center-block" />
+        </div>
+    </div>
+    <div class="container">
+      <b>MINDWEAVER SOLUTIONS LLP</b> is a Bangalore based company working towards excellence in the Computers space,
+      and believe in pursuing business through innovation and technology.
+      Our team comes with several years of industry experience, and comprise of a highly motivated set of specialists
+    </div>
+  </section>
+
+</section>
+
+</div>
+
+<section id="portfolio" style="margin-top:20px;margin-bottom:20px;z-index:-1;">
+  <div class="container">
+    <div class="row">
+      <div class="col things_we_do" >
+
+        <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+          <div class="flipper">
+            <div class="front">
+                <img src="pics/api.jpeg" alt="back">
+                <div class="centered"><b>API Management</b></div>
+            </div>
+            <div class="back">
+              <div class="back-title"></div>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.
+               </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col things_we_do" >
+        <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+          <div class="flipper">
+            <div class="front">
+                <img src="pics/app-app-design-blue-yeti-907487.jpg" alt="back">
+                <div class="centered"><b>Application Development</b></div>
+            </div>
+            <div class="back">
+              <div class="back-title">Content in Here!</div>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.
+               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col things_we_do">
+        <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+          <div class="flipper">
+            <div class="front">
+                <img src="pics/flora-3208629_1920.jpg" alt="back">
+                <div class="centered"><b>PermaCulture</b></div>
+            </div>
+            <div class="back">
+              <div class="back-title">Content in Here!</div>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.
+               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- <section id="section2" class="container-fluid wwd" style="height:100%;">
+<h1 style="text-align:center;font-size:50px;">What we do</h1>
+<h2>API dev and management</h2>
+<p>The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack. Quick wafting zephyrs vex bold Jim. Quick zephyrs blow, vexing daft Jim. Sex-charged fop blew my junk TV quiz. How quickly daft jumping zebras vex. Two driven jocks help fax my big quiz. Quick, Baz, get my woven flax jodhpurs! "Now fax quiz Jack!" my brave ghost pled. Five quacking zephyrs jolt my wax bed. Flummoxed by job, kvetching W. zaps Iraq. Cozy sphinx waves quart jug of bad milk. A very bad quack might jinx zippy fowls. Few quips galvanized the mock jury box. Quick brown dogs jump over the lazy fox. The jay, pig, fox, zebra, and my wolves quack! Blowzy red vixens fight for a quick jump. Joaquin Phoenix was gazed by MTV for luck. A wizard’s job is to vex chumps quickly in fog. Watch "Jeopardy!", Alex Trebek's fun TV quiz game. Woven silk pyjamas exchanged for blue quartz.
+ </p>
+<h2>APP development</h2>
+<p>The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack. Quick wafting zephyrs vex bold Jim. Quick zephyrs blow, vexing daft Jim. Sex-charged fop blew my junk TV quiz. How quickly daft jumping zebras vex. Two driven jocks help fax my big quiz. Quick, Baz, get my woven flax jodhpurs! "Now fax quiz Jack!" my brave ghost pled. Five quacking zephyrs jolt my wax bed. Flummoxed by job, kvetching W. zaps Iraq. Cozy sphinx waves quart jug of bad milk. A very bad quack might jinx zippy fowls. Few quips galvanized the mock jury box. Quick brown dogs jump over the lazy fox. The jay, pig, fox, zebra, and my wolves quack! Blowzy red vixens fight for a quick jump. Joaquin Phoenix was gazed by MTV for luck. A wizard’s job is to vex chumps quickly in fog. Watch "Jeopardy!", Alex Trebek's fun TV quiz game. Woven silk pyjamas exchanged for blue quartz.
+</p>
+<h2>permaculture</h2>
+<p>The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack. Quick wafting zephyrs vex bold Jim. Quick zephyrs blow, vexing daft Jim. Sex-charged fop blew my junk TV quiz. How quickly daft jumping zebras vex. Two driven jocks help fax my big quiz. Quick, Baz, get my woven flax jodhpurs! "Now fax quiz Jack!" my brave ghost pled. Five quacking zephyrs jolt my wax bed. Flummoxed by job, kvetching W. zaps Iraq. Cozy sphinx waves quart jug of bad milk. A very bad quack might jinx zippy fowls. Few quips galvanized the mock jury box. Quick brown dogs jump over the lazy fox. The jay, pig, fox, zebra, and my wolves quack! Blowzy red vixens fight for a quick jump. Joaquin Phoenix was gazed by MTV for luck. A wizard’s job is to vex chumps quickly in fog. Watch "Jeopardy!", Alex Trebek's fun TV quiz game. Woven silk pyjamas exchanged for blue quartz.
+</p>
+
+</section> -->
+<section id="contactus" style="margin-top:20px;margin-bottom:20px;z-index:-1;">
+  <div class="container">
+    <div class="row">
+      <h1>Drop a message</h1>
+      <script>
+        function initMap() {
+            var uluru = {lat: 13.0225668, lng: 77.637602};
+            var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 25,
+            center: uluru
+          });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+          });
+        }
+        </script>
+
+        <div class="wrapper">
+          <div class="contact">
+            <a href="tel:1-847-555-5555">1-847-555-5555
+              <img src="pics/android-phone-call-icon_180148.png" alt="call-us" width="42" height="42" border="0">
+            </a>
+            <a href="mindweaversolutions@outlook.com">mindweaversolutions@outlook.com
+            <img src="pics/email.png" alt="call-us" width="42" height="42" border="0">
+          </a>
+        </div>
+
+        <form method="post" action="" class="ccform">
+
+          <div class="ccfield-prepend">
+            <span class="ccform-addon"><i class="material-icons">face</i></span>
+            <input class="ccformfield" type="text" placeholder="Full Name" required>
+          </div>
+          <div class="ccfield-prepend">
+            <span class="ccform-addon"><i class="material-icons">email</i></span>
+            <input class="ccformfield" type="text" placeholder="Email" required>
+          </div>
+          <div class="ccfield-prepend">
+            <span class="ccform-addon"><i class="material-icons">message</i></span>
+            <textarea class="ccformfield" name="comments" rows="4" placeholder="Message" required></textarea>
+          </div>
+          <div class="ccfield-prepend">
+            <input class="ccbtn" type="submit" value="Submit">
+          </div>
+          <div id="map">
+            <p>You can visit us at Bengaluru office</p>
+            <script async defer
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVcyVlZIb9A0GFbeLgN-kRlhmeZmCpHPg&callback=initMap">
+            </script>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contactus" style="margin-top:20px;margin-bottom:20px;z-index:-1;">
+  <div class="container">
+    <div class="row">
+      <h1>Join the pack</h1>
+      <div class="form-group">
+          <h2>Upload your CV here</h2>
+          <form method="post" action="" class="ccform">
+            <div class="ccfield-prepend">
+                <input class="ccformfield" type="text" placeholder="Full Name" required>
+            </div>
+            <div class="ccfield-prepend">
+                <input class="ccformfield" type="text" placeholder="Email" required>
+            </div>
+            <input type="file" name="pic" accept="file_extension">
+            <div class="ccfield-prepend">
+                <input class="ccbtn" type="submit" value="Submit">
+            </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>
+
+<script>
+$(document).ready(function(){
+
+        $("#landing_content").hide();
+        $("#portfolio").show();
+
+    $("#what_we_do").click(function(){
+        $("#landing_content").hide();
+        $("#portfolio").show();
+    });
+    $("#landing_page").click(function(){
+        $("#portfolio").hide();
+        $("#landing_content").show();
+    });
+});
+</script>
+<script src="js/brain.js"></script>
+<script src="js/sprite.js"></script>
+
+</body>
+</html>
