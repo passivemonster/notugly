@@ -20,6 +20,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet"  href="css/style.css" />
+  		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  		<link rel="stylesheet" type="text/css" href="css/vicons-font.css" />
+  		<link rel="stylesheet" type="text/css" href="css/base.css" />
+  		<link rel="stylesheet" type="text/css" href="css/buttons.css" />
+      <link rel="stylesheet"  href="css/ionicons.min.css" />
+      <link rel="stylesheet"  href="css/bootstrap.min.css" />
+
+
     <script src="js/OrbitControls.js"></script>
   	<script src="js/dat.gui.min.js"></script>
   	<script src="js/threex.windowresize.js"></script>
@@ -72,51 +82,120 @@
 <div>
   <canvas id="john"></canvas>
 </div>
-<div class="container-fluid" style="width:100%;">
-  <table class="table table-borderless">
-    <tbody>
-      <tr>
-        <td>
-          <div class="navbar navbar-dark bg-dark shadow" id="navbar">
-            <div class="container d-flex">
-              <button  class="navbar-brand d-flex align-items-center" id="landing_page" style="border-radius:10%;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                <strong>HOME</strong>
-              </button>
-              <button class="navbar-brand d-flex align-items-center" id="what_we_do" style="border-radius:10%;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                <strong>WHAT WE DO</strong>
-              </button>
-              <button class="navbar-brand d-flex align-items-center" id="About_us" style="border-radius:10%;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                <strong>ABOUT US</strong>
-              </button>
-              <button class="navbar-brand d-flex align-items-center" id="contact_us" style="border-radius:10%;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                <strong>CONTACT US</strong>
-              </button>
-              <button class="navbar-brand d-flex align-items-center" id="join_us" style="border-radius:10%;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                <strong>JOIN US</strong>
-              </button>
-            </div>
-          </div>
-        </td>
-        </tr>
-    </tbody>
-  </table>
-</div>
+
+
+
+
+
+
+<section class="content">
+
+				<svg class="hidden">
+					<defs>
+						<clipPath id="clipBox" clipPathUnits="objectBoundingBox">
+                          							<polygon points="0,0 0,1 0.35,1 0.35,0.6 0.65,0.6 0.65,1 1,1 1,0" />
+
+						</clipPath>
+					</defs>
+				</svg>
+				<div class="box bg-1" >
+                  					<button class="button button--itzel button--text-thick"><i class="button__icon icon icon-envelope" id="landing_page" ></i><span>Home</span></button>
+
+					<button class="button button--itzel button--text-thick"><i class="button__icon icon icon-envelope"  id="what_we_do"></i><span>What we do</span></button>
+			<button class="button button--itzel button--text-thick"  id="About_us"><i class="button__icon icon icon-trash" >	</i><span>About Us</span></button>
+                 <button class="button button--itzel button--text-thick"  id="contact_us"><i class="button__icon icon icon-cart"></i><span>Contact Us</span></button>
+                                    <button class="button button--itzel button--text-thick"  id="join_us"><i class="button__icon icon icon-cart"></i><span>Join Us</span></button>
+				</div>
+
+			</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <section id="aboutmw" class="full-width wwd" style="width:100%;height:100%;">
-  <h1 style="text-align:center;font-size:50px;">What we do</h1>
-  <h2>API dev and management</h2>
-  <p>The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack. Quick wafting zephyrs vex bold Jim. Quick zephyrs blow, vexing daft Jim. Sex-charged fop blew my junk TV quiz. How quickly daft jumping zebras vex. Two driven jocks help fax my big quiz. Quick, Baz, get my woven flax jodhpurs! "Now fax quiz Jack!" my brave ghost pled. Five quacking zephyrs jolt my wax bed. Flummoxed by job, kvetching W. zaps Iraq. Cozy sphinx waves quart jug of bad milk. A very bad quack might jinx zippy fowls. Few quips galvanized the mock jury box. Quick brown dogs jump over the lazy fox. The jay, pig, fox, zebra, and my wolves quack! Blowzy red vixens fight for a quick jump. Joaquin Phoenix was gazed by MTV for luck. A wizard’s job is to vex chumps quickly in fog. Watch "Jeopardy!", Alex Trebek's fun TV quiz game. Woven silk pyjamas exchanged for blue quartz.
-   </p>
-  <h2>APP development</h2>
-  <p>The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack. Quick wafting zephyrs vex bold Jim. Quick zephyrs blow, vexing daft Jim. Sex-charged fop blew my junk TV quiz. How quickly daft jumping zebras vex. Two driven jocks help fax my big quiz. Quick, Baz, get my woven flax jodhpurs! "Now fax quiz Jack!" my brave ghost pled. Five quacking zephyrs jolt my wax bed. Flummoxed by job, kvetching W. zaps Iraq. Cozy sphinx waves quart jug of bad milk. A very bad quack might jinx zippy fowls. Few quips galvanized the mock jury box. Quick brown dogs jump over the lazy fox. The jay, pig, fox, zebra, and my wolves quack! Blowzy red vixens fight for a quick jump. Joaquin Phoenix was gazed by MTV for luck. A wizard’s job is to vex chumps quickly in fog. Watch "Jeopardy!", Alex Trebek's fun TV quiz game. Woven silk pyjamas exchanged for blue quartz.
-  </p>
-  <h2>permaculture</h2>
-  <p>The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack. Quick wafting zephyrs vex bold Jim. Quick zephyrs blow, vexing daft Jim. Sex-charged fop blew my junk TV quiz. How quickly daft jumping zebras vex. Two driven jocks help fax my big quiz. Quick, Baz, get my woven flax jodhpurs! "Now fax quiz Jack!" my brave ghost pled. Five quacking zephyrs jolt my wax bed. Flummoxed by job, kvetching W. zaps Iraq. Cozy sphinx waves quart jug of bad milk. A very bad quack might jinx zippy fowls. Few quips galvanized the mock jury box. Quick brown dogs jump over the lazy fox. The jay, pig, fox, zebra, and my wolves quack! Blowzy red vixens fight for a quick jump. Joaquin Phoenix was gazed by MTV for luck. A wizard’s job is to vex chumps quickly in fog. Watch "Jeopardy!", Alex Trebek's fun TV quiz game. Woven silk pyjamas exchanged for blue quartz.
-  </p>
+  <div class="container-fluid" style="width:100%;">
+
+
+
+
+
+
+  <section id="wwd" class="full-width wwd" style="width:100%;height:100%;">
+
+  <div class="iq-pt-80 iq-counter-box iq-bg iq-bg-fixed iq-over-blue-90 iq-font-white" style="background: url(images/bg/03.jpg); height:600px;">
+
+<div class="container">
+  <h1 style="color: white;">About Us</h1>
+
+  <div class="counter-info iq-mt-60 iq-pt-40">
+
+
+
+
+<div class="row">
+
+<div class="col-md-6">
+<p class="iq-mt-30"></p>
+</div>
+</div>
+
+</div>
+
+
+<div class="row">
+<div class="col-lg-3 col-md-3 col-sm-6 text-left">
+<div class="counter"> <i class="ion-ios-folder-outline " aria-hidden="true"></i>
+<label class="iq-font-white text-uppercase">ESTABLISHED IN</label>
+<span class="timer iq-tw-7" data-to="1540" data-speed="10000">2018</span>
+</div>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-6 text-left re4-mt-50">
+<div class="counter"> <i class="ion-ios-paper-outline " aria-hidden="true"></i>
+<label class="iq-font-white text-uppercase">HAPPY CLIENTS</label>
+<span class="timer iq-tw-7" data-to="2530" data-speed="10000">100</span>
+</div>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-6 text-left re-mt-50">
+<div class="counter"> <i class="ion-ios-person-outline " aria-hidden="true"></i>
+<label class="iq-font-white text-uppercase">TRAINED EMPLOYEES</label>
+<span class="timer iq-tw-7" data-to="8120" data-speed="10000">20</span>
+</div>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-6 text-left re-mt-50">
+<div class="counter"> <i class="ion-ios-star " aria-hidden="true"></i>
+<label class="iq-font-white text-uppercase">TOTAL PROJECTS</label>
+<span class="timer iq-tw-7" data-to="1620" data-speed="10000">10</span>
+</div>
+</div>
+</div>
+
+
+<div class="counter-info iq-mt-60 iq-pt-40">
+<div class="row">
+<p style="font-size: 20px;">MINDWEAVER SOLUTIONS LLP is a Bangalore based company working towards excellence in the Computers space, and believe in pursuing business through innovation and technology.
+Our team comes with several years of industry experience, and comprise of a highly motivated set of specialists.</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 
   </section>
 
