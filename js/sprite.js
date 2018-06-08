@@ -26,7 +26,7 @@ var PI2 = Math.PI * 2;
 var count = 0;
 var CamX = 0;
 var CamY = 0;
-var CamZ = 800;
+var CamZ = 600;
 
 // big expfun
 
@@ -162,7 +162,7 @@ function init() {
 
   // scene_c
   scene_c = new THREE.Scene();
-	scene_c.background = new THREE.Color(0x000000);
+	scene_c.background = new THREE.Color(0xf9f9f9);
 
   // camera_c
   camera_c = new THREE.PerspectiveCamera( 45, W / H, 1, 5000 );
@@ -225,7 +225,7 @@ setTimeout(function () {
   for ( var i = 0; i < nbParticles; i++ ) {
 
     var material = new THREE.SpriteCanvasMaterial({
-      color: 0xB8D1C6,
+      color: 0x565759,
       program: program
     });
 
